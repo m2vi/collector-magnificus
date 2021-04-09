@@ -1,6 +1,6 @@
 {
   "name": "collector-magnificus",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,15 +8,22 @@
     "start": "next start"
   },
   "dependencies": {
+    "@reactchartjs/react-chart.js": "*",
+    "@types/ip": "^1.1.0",
+    "@types/mongoose": "^5.10.4",
     "@types/nprogress": "^0.2.0",
+    "@types/platform": "^1.3.3",
     "@types/react-modal": "^3.12.0",
+    "@types/react-syntax-highlighter": "^13.5.0",
     "ip": "^1.1.5",
+    "mongoose": "^5.12.3",
     "next": "10.1.3",
     "nprogress": "^0.2.0",
     "platform": "^1.3.6",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-modal": "^3.12.1",
+    "react-syntax-highlighter": "^15.4.3",
     "sass": "^1.32.8",
     "stats.js": "^0.17.0"
   },

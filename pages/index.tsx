@@ -1,7 +1,23 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import { useEffect } from "react";
+
+import ip from "ip";
+import platform from "platform";
 
 export default function Home() {
+  let sendData = async () => {
+    const res = await fetch("/api/upload", {
+      method: "POST",
+      body: platform.os?.family,
+    }).then((res) => {
+      console.log(res);
+    });
+
+    // if (res === 200) {
+    //   sendData = async () => {};
+    // }
+  };
+
   return (
     <div className="flex justify-center items-center min-h-100">
       <Head>
@@ -38,7 +54,9 @@ export default function Home() {
 
         <title>Home</title>
       </Head>
-      <button className={`btn primary bubbly-button`}>Launch</button>
+      <button className={`btn primary bubbly-button`} onClick={sendData}>
+        Launch
+      </button>
     </div>
   );
 }
