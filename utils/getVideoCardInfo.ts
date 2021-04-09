@@ -1,4 +1,4 @@
-export default () => {
+const getVideoCardInfo = () => {
   const gl = document.createElement("canvas").getContext("webgl");
 
   if (!gl) {
@@ -17,6 +17,9 @@ export default () => {
   }
 
   return {
-    error: "no WEBGL_debug_renderer_info",
+    success: false,
+    message: "no WEBGL_debug_renderer_info",
   };
 };
+
+export default getVideoCardInfo;

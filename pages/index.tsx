@@ -1,19 +1,58 @@
 import Head from "next/head";
 import { useEffect } from "react";
 
+import "react-notifications/lib/notifications.css";
+import "react-notifications/lib/";
+
+import vitals from "web-vitals";
 import ip from "ip";
 import platform from "platform";
 
+import isMobile from "../utils/isMobile";
+import isTouch from "../utils/isTouch";
+import getVideoCardInfo from "../utils/getVideoCardInfo";
+
 export default function Home() {
   let sendData = async () => {
+    const geodata = await fetch(
+      `http://ip-api.com/json/${ip.address()}fields=status,message,continent,country,regionName,city,district,zip,lat,lon,timezone,isp,org,as,asname,mobile,proxy,hosting,query`,
+      {
+        method: "GET",
+      }
+    );
+
+    const body: any = {
+      ip: {
+        address: ip.address(),
+        isPrivate: ip.isPrivate(ip.address()),
+        format: ip.isV4Format(ip.address()) ? "v4" : "v6",
+      },
+      geolocation: await geodata.json(),
+      platform: platform,
+      system: {
+        isMobile,
+        isTouch,
+      },
+      graphics: {
+        height: window.screen.height,
+        width: window.screen.width,
+        videocard: getVideoCardInfo(),
+      },
+      core: {
+        cores: navigator.hardwareConcurrency,
+      },
+    };
+
     const res = await fetch("/api/upload", {
       method: "POST",
-      body: platform.os?.family,
-    }).then((res) => {
-      console.log(res);
+      body: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" },
     });
 
-    // if (res === 200) {
+    console.log(await res.json());
+
+    // if (res.status === 200) {
+    //   console.log(res.status);
     //   sendData = async () => {};
     // }
   };
