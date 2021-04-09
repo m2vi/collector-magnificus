@@ -8,7 +8,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@reactchartjs/react-chart.js": "*",
     "@types/ip": "^1.1.0",
     "@types/mongoose": "^5.10.4",
     "@types/nprogress": "^0.2.0",
