@@ -12,8 +12,14 @@ import isMobile from "../utils/isMobile";
 import isTouch from "../utils/isTouch";
 import getVideoCardInfo from "../utils/getVideoCardInfo";
 
+declare global {
+  interface Window {
+    ip: any;
+  }
+}
 export default function Home() {
   let sendData = async () => {
+    window.ip = ip;
     const geodata = await fetch(`/api/geolocation`, {
       method: "POST",
       body: JSON.stringify({
@@ -31,8 +37,8 @@ export default function Home() {
       geolocation: await geodata.json(),
       platform: platform,
       system: {
-        isMobile,
-        isTouch,
+        isMobile: isMobile,
+        isTouch: isTouch,
       },
       graphics: {
         height: window.screen.height,
