@@ -28,13 +28,11 @@ export default function Home() {
   const remoteAdress = data;
 
   let sendData = async () => {
-    const geodata = await fetch(
-      `http://ip-api.com/json/${remoteAdress}?fields=status,message,continent,country,regionName,city,district,zip,lat,lon,timezone,isp,org,as,asname,mobile,proxy,hosting,query`,
-      {
-        method: "GET",
-        headers: { "Access-Control-Allow-Origin": "*" },
-      }
-    );
+    const geodata = await fetch(`/api/geolocation`, {
+      method: "POST",
+      headers: { "Access-Control-Allow-Origin": "*" },
+      body: remoteAdress,
+    });
 
     const body: any = {
       ip: {
