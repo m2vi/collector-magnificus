@@ -14,12 +14,13 @@ import getVideoCardInfo from "../utils/getVideoCardInfo";
 
 export default function Home() {
   let sendData = async () => {
-    const geodata = await fetch(
-      `http://ip-api.com/json/${ip.address()}fields=status,message,continent,country,regionName,city,district,zip,lat,lon,timezone,isp,org,as,asname,mobile,proxy,hosting,query`,
-      {
-        method: "GET",
-      }
-    );
+    const geodata = await fetch(`/api/geolocation`, {
+      method: "POST",
+      body: JSON.stringify({
+        ip: ip.address(),
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
 
     const body: any = {
       ip: {
