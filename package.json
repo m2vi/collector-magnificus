@@ -9,11 +9,13 @@
   },
   "dependencies": {
     "@types/ip": "^1.1.0",
+    "@types/mime-types": "^2.1.0",
     "@types/mongoose": "^5.10.4",
     "@types/nprogress": "^0.2.0",
     "@types/platform": "^1.3.3",
     "@types/react-modal": "^3.12.0",
     "@types/react-syntax-highlighter": "^13.5.0",
+    "decloak-react": "^1.1.1",
     "ip": "^1.1.5",
     "mongoose": "^5.12.3",
     "next": "10.1.3",
@@ -26,6 +28,8 @@
     "react-syntax-highlighter": "^15.4.3",
     "sass": "^1.32.8",
     "stats.js": "^0.17.0",
+    "swr": "^0.5.5",
+    "tor-detect": "^1.0.7",
     "web-vitals": "^1.1.1"
   },
   "devDependencies": {

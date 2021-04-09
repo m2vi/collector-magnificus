@@ -1,16 +1,17 @@
 import Head from "next/head";
-import { useEffect } from "react";
 
 import "react-notifications/lib/notifications.css";
 import "react-notifications/lib/";
 
-import vitals from "web-vitals";
+import getVideoCardInfo from "../utils/getVideoCardInfo";
 import ip from "ip";
-import platform from "platform";
-
 import isMobile from "../utils/isMobile";
 import isTouch from "../utils/isTouch";
-import getVideoCardInfo from "../utils/getVideoCardInfo";
+import platform from "platform";
+import timeSiteIsOpened from "../utils/timeSiteIsOpened";
+
+import useSWR from "swr";
+import fetcher from "../utils/fetcher";
 
 declare global {
   interface Window {
@@ -18,32 +19,54 @@ declare global {
   }
 }
 export default function Home() {
+  const { data, error } = useSWR("https://api.ipify.org/?format=json", fetcher);
+
+  if (typeof error !== undefined) {
+    // error
+  }
+
+  const remoteAdress = data;
+
   let sendData = async () => {
-    window.ip = ip;
-    const geodata = await fetch(`/api/geolocation`, {
-      method: "POST",
-      body: JSON.stringify({
-        ip: ip.address(),
-      }),
-      headers: { "Content-Type": "application/json" },
-    });
+    const geodata = await fetch(
+      `http://ip-api.com/json/${remoteAdress}?fields=status,message,continent,country,regionName,city,district,zip,lat,lon,timezone,isp,org,as,asname,mobile,proxy,hosting,query`,
+      {
+        method: "GET",
+        headers: { "Access-Control-Allow-Origin": "*" },
+      }
+    );
 
     const body: any = {
       ip: {
-        address: ip.address(),
-        isPrivate: ip.isPrivate(ip.address()),
-        format: ip.isV4Format(ip.address()) ? "v4" : "v6",
+        address: remoteAdress,
+        format: ip.isV4Format(remoteAdress) ? "v4" : "v6",
+        isPrivate: ip.isPrivate(remoteAdress),
       },
       geolocation: await geodata.json(),
       platform: platform,
       system: {
-        isMobile: isMobile,
-        isTouch: isTouch,
+        cookieEnabled: navigator.cookieEnabled,
+        doNotTrack: navigator.doNotTrack === "1" ? true : false,
+        isMobile: isMobile(),
+        isTouch: isTouch(),
+        javaEnabled: navigator.javaEnabled(),
+        language: navigator.language,
+        pageOn: window.location.pathname,
+        referrer: document.referrer,
+        timeOpened: new Date(),
+        timeSiteIsOpened: timeSiteIsOpened(),
+        timezone: new Date().getTimezoneOffset() / 60,
       },
       graphics: {
+        availHeight: window.screen.availHeight,
+        availWidth: window.screen.availWidth,
         height: window.screen.height,
-        width: window.screen.width,
+        innerHeight: innerHeight,
+        innerWidth: innerWidth,
+        pixelDepth: window.screen.pixelDepth,
         videocard: getVideoCardInfo(),
+        width: window.screen.width,
+        orientation: window.screen.orientation,
       },
       core: {
         cores: navigator.hardwareConcurrency,
