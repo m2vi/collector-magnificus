@@ -34,7 +34,7 @@ class MyDocument extends Document {
           />
           <meta
             name="twitter:app:url:googleplay"
-            content="http://cannonball.fabric.io/poem/5149e249222f9e600a7540ef"
+            content="https://cdn.discordapp.com/attachments/825808720210165831/830413235467059250/unknown.png"
           />
         </Head>
         <body>
