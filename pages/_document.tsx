@@ -11,33 +11,24 @@ class MyDocument extends Document {
       <Html lang="en-GB">
         <Head>
           <meta property="og:url" content="https://github.com" />
-          <meta property="og:site_name" content="GitHub" />
-          <meta property="og:title" content="Build software better, together" />
+          <meta property="og:site_name" content="developed by m2v" />
+          <meta property="og:title" content="Collector Magnificus" />
           <meta
             property="og:description"
-            content="GitHub is where people build software. More than 56 million people use GitHub to discover, fork, and contribute to over 100 million projects."
+            content="Collector Magnificus is a tool that graphically represents everything that you simply get from the client."
           />
-          <meta
-            property="og:image"
-            content="https://github.githubassets.com/images/modules/open_graph/github-logo.png"
-          />
+          <meta property="og:image" content="/logo.png" />
           <meta property="og:image:type" content="image/png" />
           <meta property="og:image:width" content="1200" />
           <meta property="og:image:height" content="1200" />
-          <meta
-            property="og:image"
-            content="https://github.githubassets.com/images/modules/open_graph/github-mark.png"
-          />
+          <meta property="og:image" content="/logo.png" />
           <meta property="og:image:type" content="image/png" />
           <meta property="og:image:width" content="1200" />
-          <meta property="og:image:height" content="620" />
-          <meta
-            property="og:image"
-            content="https://github.githubassets.com/images/modules/open_graph/github-octocat.png"
-          />
+          <meta property="og:image:height" content="1200" />
+          <meta property="og:image" content="/logo.png" />
           <meta property="og:image:type" content="image/png" />
           <meta property="og:image:width" content="1200" />
-          <meta property="og:image:height" content="620" />
+          <meta property="og:image:height" content="1200" />
         </Head>
         <body>
           <Main />
