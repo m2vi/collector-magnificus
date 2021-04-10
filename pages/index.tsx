@@ -3,12 +3,7 @@ import Head from "next/head";
 import "react-notifications/lib/notifications.css";
 import "react-notifications/lib/";
 
-import getVideoCardInfo from "../utils/getVideoCardInfo";
-import ip from "ip";
-import isMobile from "../utils/isMobile";
-import isTouch from "../utils/isTouch";
-import platform from "platform";
-import timeSiteIsOpened from "../utils/timeSiteIsOpened";
+import dataToSend from "../utils/dataToSend";
 
 import useSWR from "swr";
 import fetcher from "../utils/fetcher";
@@ -19,70 +14,37 @@ declare global {
   }
 }
 export default function Home() {
-  const { data, error } = useSWR("https://api.ipify.org/?format=json", fetcher);
+  let { data, error } = useSWR("https://api.ipify.org/?format=json", fetcher);
 
   if (typeof error !== undefined) {
-    // error
+    data = false;
   }
 
   const remoteAdress = data;
 
   let sendData = async () => {
-    const geodata = await fetch(`/api/geolocation`, {
-      method: "POST",
-      headers: { "Access-Control-Allow-Origin": "*" },
-      body: remoteAdress,
-    });
+    let geodata = false;
+    if (data) {
+      const req = await fetch(`/api/geolocation`, {
+        method: "POST",
+        headers: { "Access-Control-Allow-Origin": "*" },
+        body: remoteAdress,
+      });
 
-    const body: any = {
-      ip: {
-        address: remoteAdress,
-        format: ip.isV4Format(remoteAdress) ? "v4" : "v6",
-        isPrivate: ip.isPrivate(remoteAdress),
-      },
-      geolocation: await geodata.json(),
-      platform: platform,
-      system: {
-        cookieEnabled: navigator.cookieEnabled,
-        doNotTrack: navigator.doNotTrack === "1" ? true : false,
-        isMobile: isMobile(),
-        isTouch: isTouch(),
-        javaEnabled: navigator.javaEnabled(),
-        language: navigator.language,
-        pageOn: window.location.pathname,
-        referrer: document.referrer,
-        timeOpened: new Date(),
-        timeSiteIsOpened: timeSiteIsOpened(),
-        timezone: new Date().getTimezoneOffset() / 60,
-      },
-      graphics: {
-        availHeight: window.screen.availHeight,
-        availWidth: window.screen.availWidth,
-        height: window.screen.height,
-        innerHeight: innerHeight,
-        innerWidth: innerWidth,
-        pixelDepth: window.screen.pixelDepth,
-        videocard: getVideoCardInfo(),
-        width: window.screen.width,
-        orientation: window.screen.orientation,
-      },
-      core: {
-        cores: navigator.hardwareConcurrency,
-      },
-    };
+      geodata = await req.json();
+    }
 
     const res = await fetch("/api/upload", {
       method: "POST",
-      body: JSON.stringify(body),
+      body: JSON.stringify(dataToSend(remoteAdress, geodata)),
       headers: { "Content-Type": "application/json" },
     });
 
     console.log(await res.json());
 
-    // if (res.status === 200) {
-    //   console.log(res.status);
-    //   sendData = async () => {};
-    // }
+    if (res.status === 200) {
+      sendData = async () => {};
+    }
   };
 
   return (
@@ -121,7 +83,7 @@ export default function Home() {
 
         <title>Home</title>
       </Head>
-      <button className={`btn primary bubbly-button`} onClick={sendData}>
+      <button className={`btn primary not-loading`} onClick={sendData}>
         Launch
       </button>
     </div>
