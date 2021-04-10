@@ -10,32 +10,51 @@ class MyDocument extends Document {
     return (
       <Html lang="en-GB">
         <Head>
-          <meta name="twitter:card" content="app" />
+          <meta property="og:url" content="https://github.com" />
+          <meta property="og:site_name" content="GitHub" />
+          <meta property="og:title" content="Build software better, together" />
           <meta
-            name="twitter:description"
-            content="Cannonball is the fun way to create and share stories and poems on your phone. Start with a beautiful image from the gallery, then choose words to complete the story and share it with friends."
-          />
-          <meta name="twitter:app:country" content="US" />
-          <meta name="twitter:app:name:iphone" content="Cannonball" />
-          <meta
-            name="twitter:app:url:iphone"
-            content="cannonball://poem/5149e249222f9e600a7540ef"
-          />
-          <meta name="twitter:app:name:ipad" content="Cannonball" />
-          <meta name="twitter:app:id:ipad" content="929750075" />
-          <meta
-            name="twitter:app:url:ipad"
-            content="cannonball://poem/5149e249222f9e600a7540ef"
-          />
-          <meta name="twitter:app:name:googleplay" content="Cannonball" />
-          <meta
-            name="twitter:app:id:googleplay"
-            content="io.fabric.samples.cannonball"
+            property="og:description"
+            content="GitHub is where people build software. More than 56 million people use GitHub to discover, fork, and contribute to over 100 million projects."
           />
           <meta
-            name="twitter:app:url:googleplay"
-            content="https://cdn.discordapp.com/attachments/825808720210165831/830413235467059250/unknown.png"
+            property="og:image"
+            content="https://github.githubassets.com/images/modules/open_graph/github-logo.png"
           />
+          <meta property="og:image:type" content="image/png" />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="1200" />
+          <meta
+            property="og:image"
+            content="https://github.githubassets.com/images/modules/open_graph/github-mark.png"
+          />
+          <meta property="og:image:type" content="image/png" />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="620" />
+          <meta
+            property="og:image"
+            content="https://github.githubassets.com/images/modules/open_graph/github-octocat.png"
+          />
+          <meta property="og:image:type" content="image/png" />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="620" />
+
+          <meta property="twitter:site" content="github" />
+          <meta property="twitter:site:id" content="13334762" />
+          <meta property="twitter:creator" content="github" />
+          <meta property="twitter:creator:id" content="13334762" />
+          <meta property="twitter:card" content="summary_large_image" />
+          <meta property="twitter:title" content="GitHub" />
+          <meta
+            property="twitter:description"
+            content="GitHub is where people build software. More than 56 million people use GitHub to discover, fork, and contribute to over 100 million projects."
+          />
+          <meta
+            property="twitter:image:src"
+            content="https://github.githubassets.com/images/modules/open_graph/github-logo.png"
+          />
+          <meta property="twitter:image:width" content="1200" />
+          <meta property="twitter:image:height" content="1200" />
         </Head>
         <body>
           <Main />
