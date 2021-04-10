@@ -16,7 +16,7 @@ declare global {
 export default function Home() {
   let { data, error } = useSWR("https://api.ipify.org/?format=json", fetcher);
 
-  if (typeof error !== undefined) {
+  if (typeof error !== "undefined") {
     data = false;
   }
 
@@ -24,7 +24,7 @@ export default function Home() {
 
   let sendData = async () => {
     let geodata = false;
-    if (data) {
+    if (remoteAdress) {
       const req = await fetch(`/api/geolocation`, {
         method: "POST",
         headers: { "Access-Control-Allow-Origin": "*" },
