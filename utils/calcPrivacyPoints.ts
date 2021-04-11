@@ -10,23 +10,23 @@ const calcPrivacyPoints = (data: any) => {
     removePoints(30);
   }
 
-  if (data.ip.success) {
+  if (data.ip.success === true) {
     removePoints(20);
   }
 
-  if (data.system.cookieEnabled) {
+  if (data.system.cookieEnabled === true) {
     removePoints(10);
   }
 
-  if (!data.system.doNotTrack) {
+  if (data.system.doNotTrack === false) {
     removePoints(20);
   }
 
-  if (data.system.adsAllowed) {
+  if (data.system.adsAllowed === true) {
     removePoints(50);
   }
 
-  if (!data.graphics.videocard.success) {
+  if (data.graphics.videocard.success === true) {
     removePoints(10);
   }
 

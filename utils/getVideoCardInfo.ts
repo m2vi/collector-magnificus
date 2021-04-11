@@ -12,6 +12,7 @@ const getVideoCardInfo = () => {
 
     if (debugInfo) {
       return {
+        success: true,
         vendor: gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL),
         renderer: gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL),
       };
