@@ -1,11 +1,12 @@
 import getVideoCardInfo from "./getVideoCardInfo";
-import ip from "ip";
+import * as ipTool from "ip";
 import isMobile from "./isMobile";
 import isTouch from "./isTouch";
 import platform from "platform";
 import timeSiteIsOpened from "./timeSiteIsOpened";
 
-export default async function dataToSend(remoteAdress: string) {
+export default async function dataToSend({ ip }: any) {
+  const remoteAdress = ip;
   let geodata = false;
   if (remoteAdress) {
     const req = await fetch(`/api/geolocation`, {
@@ -22,11 +23,11 @@ export default async function dataToSend(remoteAdress: string) {
       success: remoteAdress ? true : false,
       address: remoteAdress ? remoteAdress : false,
       format: remoteAdress
-        ? ip.isV4Format(remoteAdress)
+        ? ipTool.isV4Format(remoteAdress)
           ? "v4"
           : "v6"
         : false,
-      isPrivate: remoteAdress ? ip.isPrivate(remoteAdress) : false,
+      isPrivate: remoteAdress ? ipTool.isPrivate(remoteAdress) : false,
     },
     geolocation: geodata,
     platform: platform,
