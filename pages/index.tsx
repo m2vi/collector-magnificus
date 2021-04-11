@@ -40,14 +40,14 @@ export default function Home() {
       .then((res) => res.json())
       .then((res) => {
         onSuccess(res);
-        setLoadingClass("not-loading");
-        setSuccess(false);
+        setSuccess(true);
       })
       .catch((err) => {
         onError(err);
-        setLoadingClass("not-loading");
         setSuccess(false);
-      });
+      }).finally(() => {
+        setLoadingClass("not-loading");
+      })
   };
 
   const onError = async (error: any, message?: string) => {
