@@ -3,7 +3,7 @@ import calcPrivacyPoints from "../../utils/calcPrivacyPoints"
 import dbConnect from "../../utils/db/dbConnect";
 import dbSchema from "../../models/dbSchema";
 
-dbConnect();
+// dbConnect();
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
