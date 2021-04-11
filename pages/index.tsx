@@ -37,22 +37,34 @@ export default function Home() {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
+        onSuccess(res)
         setLoadingClass("not-loading");
-      });
+      }).catch((err) => {
+        onError(err)
+      })
   };
 
-  const onError = async (error: any) => {
+  const onError = async (error: any, message?: string) => {
     console.log({
       error: error,
       time: new Date(),
     });
     NotificationManager.error(
-      "It's a pity, there's been an error. If you want to know more, take a look at the console.",
+      (message || "It's a pity, there's been an error. If you want to know more, take a look at the console."),
       <>
         <img src="/icons/error.svg" alt="Error"></img>
       </>
     );
+  };
+
+  const onSuccess = async (data: any, message?: string) => {
+    console.log(data)
+    NotificationManager.success (
+      (message || "Data has been sent. Thank you for participating!"),
+      <>
+        <img src="/icons/success.svg" alt="Success" width="24"></img>
+      </>
+    )
   };
 
   return (
