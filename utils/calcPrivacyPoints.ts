@@ -8,27 +8,26 @@ const removePoints = (number: number) => {
 const calcPrivacyPoints = (data: any) => {
   if (data.geolocation) {
     removePoints(30);
-    console.log(points)
   }
 
   if (data.ip.success) {
     removePoints(20);
-    console.log(points)
   }
 
   if (data.system.cookieEnabled) {
     removePoints(10);
-    console.log(points)
   }
 
   if (!data.system.doNotTrack) {
     removePoints(20);
-    console.log(points)
   }
 
   if (data.system.adsAllowed) {
     removePoints(50);
-    console.log(points)
+  }
+
+  if (!data.graphics.videocard.success) {
+    removePoints(10);
   }
 
   return points;
