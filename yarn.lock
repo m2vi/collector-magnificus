@@ -321,6 +321,11 @@
     "readable-stream" "^2.3.5"
     "safe-buffer" "^5.1.1"
 
+"blockadblock@^3.2.1":
+  "integrity" "sha1-iIyAqOsiHMPx6EoPBm5UyQ/ofWY="
+  "resolved" "https://registry.npmjs.org/blockadblock/-/blockadblock-3.2.1.tgz"
+  "version" "3.2.1"
+
 "bluebird@3.5.1":
   "integrity" "sha512-MKiLiV+I1AA596t9w1sQJ8jkiSr5+ZKi0WKrYGUn6d1Fx+Ij4tIj+m2WMQSGczs5jZVxV339chE8iwk6F64wjA=="
   "resolved" "https://registry.npmjs.org/bluebird/-/bluebird-3.5.1.tgz"

@@ -1,12 +1,15 @@
-import getVideoCardInfo from "./getVideoCardInfo";
 import * as ipTool from "ip";
+// @ts-ignore
+import blockAdBlock from "blockadblock";
+import getVideoCardInfo from "./getVideoCardInfo";
 import isMobile from "./isMobile";
 import isTouch from "./isTouch";
 import platform from "platform";
 import timeSiteIsOpened from "./timeSiteIsOpened";
+import adBlockDetect from "./adBlockDetect";
 
-export default async function dataToSend({ ip }: any) {
-  const remoteAdress = ip;
+export default async function dataToSend(remoteAdress: any) {
+  remoteAdress = remoteAdress.ip;
   let geodata = false;
   if (remoteAdress) {
     const req = await fetch(`/api/geolocation`, {
@@ -46,6 +49,7 @@ export default async function dataToSend({ ip }: any) {
       onLine: navigator.onLine,
       // @ts-ignore
       usesBrave: typeof navigator.brave !== "undefined" ? true : false,
+      adsAllowed: await adBlockDetect()
     },
     graphics: {
       availHeight: window.screen.availHeight,
