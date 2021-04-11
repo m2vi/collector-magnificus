@@ -5,7 +5,18 @@ import isTouch from "./isTouch";
 import platform from "platform";
 import timeSiteIsOpened from "./timeSiteIsOpened";
 
-export default function dataToSend(remoteAdress: string, geodata: any) {
+export default async function dataToSend(remoteAdress: string) {
+  let geodata = false;
+  if (remoteAdress) {
+    const req = await fetch(`/api/geolocation`, {
+      method: "POST",
+      headers: { "Access-Control-Allow-Origin": "*" },
+      body: remoteAdress,
+    });
+
+    geodata = await req.json();
+  }
+
   const body: any = {
     ip: {
       success: remoteAdress ? true : false,

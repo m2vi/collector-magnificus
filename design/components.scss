@@ -71,3 +71,22 @@
   // TEST
   font-size: 17px;
 }
+
+.btn .loader {
+  display: none;
+}
+
+.btn.loading {
+  position: relative;
+  color: transparent;
+
+  .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

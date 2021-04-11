@@ -1,5 +1,5 @@
-export default async function fetcher(url: string) {
+export default async function fetcher(url: string): Promise<any> {
   const res = await fetch(url);
-  const json = await res.json();
-  return json.ip;
+  const json: any = await res.json();
+  return json;
 }

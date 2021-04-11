@@ -1,12 +1,16 @@
 import Head from "next/head";
 
-import "react-notifications/lib/notifications.css";
-import "react-notifications/lib/";
+import {
+  NotificationContainer,
+  NotificationManager,
+  // @ts-ignore
+} from "react-notifications";
 
 import dataToSend from "../utils/dataToSend";
 
 import useSWR from "swr";
 import fetcher from "../utils/fetcher";
+import { useEffect, useState } from "react";
 
 declare global {
   interface Window {
@@ -14,6 +18,7 @@ declare global {
   }
 }
 export default function Home() {
+  const [loadingClass, setLoadingClass] = useState("not-loading");
   let { data, error } = useSWR("https://api.ipify.org/?format=json", fetcher);
 
   if (typeof error !== "undefined") {
@@ -23,28 +28,31 @@ export default function Home() {
   const remoteAdress = data;
 
   let sendData = async () => {
-    let geodata = false;
-    if (remoteAdress) {
-      const req = await fetch(`/api/geolocation`, {
-        method: "POST",
-        headers: { "Access-Control-Allow-Origin": "*" },
-        body: remoteAdress,
-      });
+    setLoadingClass("loading");
 
-      geodata = await req.json();
-    }
-
-    const res = await fetch("/api/upload", {
+    await fetch("/api/upload", {
       method: "POST",
-      body: JSON.stringify(dataToSend(remoteAdress, geodata)),
+      body: JSON.stringify(await dataToSend(remoteAdress)),
       headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        setLoadingClass("not-loading");
+      });
+  };
+
+  const onError = async (error: any) => {
+    console.log({
+      error: error,
+      time: new Date(),
     });
-
-    console.log(await res.json());
-
-    if (res.status === 200) {
-      sendData = async () => {};
-    }
+    NotificationManager.error(
+      "It's a pity, there's been an error. If you want to know more, take a look at the console.",
+      <>
+        <img src="/icons/error.svg" alt="Error"></img>
+      </>
+    );
   };
 
   return (
@@ -83,9 +91,39 @@ export default function Home() {
 
         <title>Home</title>
       </Head>
-      <button className={`btn primary not-loading`} onClick={sendData}>
-        Launch
+      <button className={`btn primary ${loadingClass}`} onClick={sendData}>
+        <span>Launch</span>
+        <div className="loader">
+          <svg
+            version="1.1"
+            id="loader-1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            width="24px"
+            height="24px"
+            viewBox="0 0 50 50"
+            xmlSpace="preserve"
+          >
+            <path
+              fill="#fff"
+              d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z"
+            >
+              <animateTransform
+                attributeType="xml"
+                attributeName="transform"
+                type="rotate"
+                from="0 25 25"
+                to="360 25 25"
+                dur="1s"
+                repeatCount="indefinite"
+              />
+            </path>
+          </svg>
+        </div>
       </button>
+      <NotificationContainer />
     </div>
   );
 }
