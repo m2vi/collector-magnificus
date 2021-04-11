@@ -10,8 +10,8 @@ class MyDocument extends Document {
     return (
       <Html lang="en-GB">
         <Head>
-          <meta property="og:url" content="https://github.com" />
-          <meta property="og:site_name" content="developed by m2v" />
+          <meta property="og:url" content="https://collector-magnificus.vercel.app/" />
+          <meta property="og:site_name" content="collector-magnificus.vercel.app" />
           <meta property="og:title" content="Collector Magnificus" />
           <meta
             property="og:description"
@@ -29,6 +29,36 @@ class MyDocument extends Document {
           <meta property="og:image:type" content="image/png" />
           <meta property="og:image:width" content="1200" />
           <meta property="og:image:height" content="1200" />
+          <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/favicon/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/favicon/site.webmanifest" />
+        <link
+          rel="mask-icon"
+          href="/favicon/safari-pinned-tab.svg"
+          color="#0d1014"
+        />
+        <link rel="shortcut icon" href="/favicon/favicon.ico" />
+        <meta name="msapplication-TileColor" content="#0d1014" />
+        <meta
+          name="msapplication-config"
+          content="/favicon/browserconfig.xml"
+        />
+        <meta name="theme-color" content="#0d1014" />
         </Head>
         <body>
           <Main />
