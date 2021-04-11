@@ -8,8 +8,9 @@ import platform from "platform";
 import timeSiteIsOpened from "./timeSiteIsOpened";
 import adBlockDetect from "./adBlockDetect";
 
+
 export default async function dataToSend(remoteAdress: any) {
-  remoteAdress = remoteAdress.ip;
+  remoteAdress = (remoteAdress.ip || false);
   let geodata = false;
   if (remoteAdress) {
     const req = await fetch(`/api/geolocation`, {
@@ -66,5 +67,6 @@ export default async function dataToSend(remoteAdress: any) {
       cores: navigator.hardwareConcurrency,
     },
   };
+
   return body;
 }

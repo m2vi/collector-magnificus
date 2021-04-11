@@ -1,33 +1,27 @@
-let points = 100;
-
-const removePoints = (number: number) => {
-  points = points - number;
-  return points - number;
-};
-
 const calcPrivacyPoints = (data: any) => {
+  let points = 100;
   if (data.geolocation) {
-    removePoints(30);
+    points = points - 30;
   }
 
   if (data.ip.success === true) {
-    removePoints(20);
+    points = points - 20;
   }
 
   if (data.system.cookieEnabled === true) {
-    removePoints(10);
+    points = points - 10;
   }
 
   if (data.system.doNotTrack === false) {
-    removePoints(20);
+    points = points - 20;
   }
 
   if (data.system.adsAllowed === true) {
-    removePoints(50);
+    points = points - 50;
   }
 
   if (data.graphics.videocard.success === true) {
-    removePoints(10);
+    points = points - 10;
   }
 
   return points;

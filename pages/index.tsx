@@ -41,7 +41,7 @@ export default function Home() {
       .then((res) => {
         onSuccess(res);
         setLoadingClass("not-loading");
-        setSuccess(true);
+        setSuccess(false);
       })
       .catch((err) => {
         onError(err);
