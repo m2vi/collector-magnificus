@@ -1,6 +1,6 @@
 const calcPrivacyPoints = (data: any) => {
   let points = 100;
-  if (data.geolocation) {
+  if (data.geolocation.success) {
     points = points - 30;
   }
 

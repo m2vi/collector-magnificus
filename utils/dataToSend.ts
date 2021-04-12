@@ -11,7 +11,10 @@ import adBlockDetect from "./adBlockDetect";
 
 export default async function dataToSend(remoteAdress: any) {
   remoteAdress = (remoteAdress.ip || false);
-  let geodata = false;
+  let geodata = {
+    success: false,
+    message: "Something went wrong!"
+  };
   if (remoteAdress) {
     const req = await fetch(`/api/geolocation`, {
       method: "POST",

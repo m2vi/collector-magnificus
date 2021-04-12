@@ -287,3 +287,35 @@
 .pb-7 {
   padding-bottom: 60px;
 }
+
+.ReactModal__Overlay {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.modal {
+  background-color: var(--color-primary-800);
+  border-radius: 8px;
+  padding: 40px 30px;
+  position: absolute;
+  width: 100%;
+  max-width: 320px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.score {
+  position: relative;
+
+  .scoreNumber {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.35);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
