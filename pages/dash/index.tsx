@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/default-highlight";
 import Modal from "react-modal";
 import { Circle } from "rc-progress";
+import Collapsible from "react-collapsible";
 
 export default function Home() {
   const [items, setItems] = useState({});
-  const [privacyScore, setPrivacyScore] = useState(25);
+  const [privacyScore, setPrivacyScore] = useState(0);
 
   useEffect(() => {
     openModal();
@@ -52,7 +53,6 @@ export default function Home() {
           contentLabel="Example Modal"
           className="modal"
         >
-          {/* <button onClick={closeModal}>close</button> */}
           <div className="score">
             <Circle
               percent={privacyScore}
@@ -63,6 +63,7 @@ export default function Home() {
               <h1>{privacyScore}</h1>
             </div>
           </div>
+          <p className="text-muted small">Made by m2v</p>
         </Modal>
       </div>
     </div>
