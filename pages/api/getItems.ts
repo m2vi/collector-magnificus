@@ -7,7 +7,6 @@ dbConnect();
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-
     res.status(200).json({ success: true, data: await dbSchema.find() });
   } catch (err) {
     console.log(err);

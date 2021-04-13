@@ -8,12 +8,11 @@ import platform from "platform";
 import timeSiteIsOpened from "./timeSiteIsOpened";
 import adBlockDetect from "./adBlockDetect";
 
-
 export default async function dataToSend(remoteAdress: any) {
-  remoteAdress = (remoteAdress.ip || false);
+  remoteAdress = remoteAdress.ip || false;
   let geodata = {
     success: false,
-    message: "Something went wrong!"
+    message: "Something went wrong!",
   };
   if (remoteAdress) {
     const req = await fetch(`/api/geolocation`, {
@@ -53,7 +52,7 @@ export default async function dataToSend(remoteAdress: any) {
       onLine: navigator.onLine,
       // @ts-ignore
       usesBrave: typeof navigator.brave !== "undefined" ? true : false,
-      adsAllowed: await adBlockDetect()
+      adsAllowed: await adBlockDetect(),
     },
     graphics: {
       availHeight: window.screen.availHeight,

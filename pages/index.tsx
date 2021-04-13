@@ -45,9 +45,10 @@ export default function Home() {
       .catch((err) => {
         onError(err);
         setSuccess(false);
-      }).finally(() => {
-        setLoadingClass("not-loading");
       })
+      .finally(() => {
+        setLoadingClass("not-loading");
+      });
   };
 
   const onError = async (error: any, message?: string) => {
