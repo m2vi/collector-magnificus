@@ -2,11 +2,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import calcPrivacyPoints from "../../utils/calcPrivacyPoints";
 import dbConnect from "../../utils/db/dbConnect";
 import dbSchema from "../../models/dbSchema";
-import mongoose, { Schema } from "mongoose";
-
-dbConnect();
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+  await dbConnect();
   const dataToUpload = {
     success: true,
     data: req.body,
