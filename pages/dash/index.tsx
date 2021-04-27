@@ -45,27 +45,24 @@ export default function Home() {
       <Head>
         <title>Dashboard</title>
       </Head>
-      <div className="container">
-        <h3 className="mt-5">Dashboard</h3>
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          contentLabel="Example Modal"
-          className="modal"
-        >
-          <div className="score">
-            <Circle
-              percent={privacyScore}
-              strokeColor="var(--color-accent)"
-              trailColor="var(--color-primary-500)"
-            />
-            <div className="scoreNumber">
-              <h1>{privacyScore}</h1>
-            </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Example Modal"
+        className="modal"
+      >
+        <div className="score">
+          <Circle
+            percent={privacyScore}
+            strokeColor="var(--color-accent)"
+            trailColor="var(--color-primary-500)"
+          />
+          <div className="scoreNumber">
+            <h1>{privacyScore}</h1>
           </div>
-          <p className="text-muted small">Made by m2v</p>
-        </Modal>
-      </div>
+        </div>
+        <p className="text-muted small">Made by m2v</p>
+      </Modal>
     </div>
   );
 }
